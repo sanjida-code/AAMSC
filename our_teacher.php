@@ -16,10 +16,11 @@
 <a href ="homepage.php"><img src="logo.jpg" style="height:100px; width:150px;"></a>
 <h1>Anowar Ali Memorial School & College</h1>
 </div>
+
 <div class ="menu-bar">
 <ul>
 <li><a href="homepage.php"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
-<li><a href="#"><i class="fa fa-user" aria-hidden="true"></i>About Us</a>
+<li class="active"><a href="#"><i class="fa fa-user" aria-hidden="true"></i>About Us</a>
     <div class= "sub-manu-1">
         <ul>
              <li><a href="message_principal.php">Messege From Principal</a></li>
@@ -56,7 +57,7 @@
          </ul>
      </div>
 </li>
-<li class="active"><a href="#"><i class="fa fa-plus-square" aria-hidden="true"></i>Admission</a>
+<li><a href="#"><i class="fa fa-plus-square" aria-hidden="true"></i>Admission</a>
       <div class= "sub-manu-1">
         <ul>
         <li><a href="admission_circular.php">Admission Circuler</a></li>
@@ -94,33 +95,43 @@
 </section>
 
 <section id = "section2">
+<div class="teacherpage1">   
+<table>
+<thead>
+<tr>
+<th>Image</th>
+<th>ID NUMBER</th>
+<th>NAME</th>
+<th>Email</th>
+</tr>
+</thead>
+<?php
+ include("database.php");
+ $sql= "select * from teacher";
+ $result=$conn->query($sql) ;
 
-<form  method="post" action="admission_apply_php.php" style="heigth:100%; padding-left:50px; margin-left:350px; margin-right:350px; background:lightpink;" >  
-<br><br><br>
-<h1> Form For Admission</h1>
-<hr>
-<br>
-<br>
-Class Name:<br><input type="text" name="cname" value=" " style="width:80%;"><br><br>
-Image: <br><input type="file" name="image" value=" " style=" width:80%;"><br><br>
-Name: <br><input type="text" name="username" value=" " style=" width:80%;"><br><br>
-Mother Name:<br> <input type="text" name="mname" value=" "  style=" width:80%;"><br><br>
-Father Name:<br> <input type="text" name="fname" value=" " style=" width:80%;"><br><br>
-Birth Date: <br><input type="date" name="birth_date" value=" " style=" width:80%;"><br><br>
-Phone Number:<br> <input type="number" name="phone" value=" "  style=" width:80%;"><br><br>
-E-mail:<br><input type="text" name="email" value=" "  style=" width:80%;"><br><br>
-Address:<br> <textarea name="address" rows="5" cols="40" style=" width:80%;"></textarea><br><br>
-  Gender:<br>
-  <input type="radio" name="gender" <?php if (isset($gender) && $gender=="female") echo "checked";?> value="female">Female
-  <input type="radio" name="gender" <?php if (isset($gender) && $gender=="male") echo "checked";?> value="male">Male
-  <input type="radio" name="gender" <?php if (isset($gender) && $gender=="other") echo "checked";?> value="other">Other    
-<br><br><br>
-  <input type="submit" name="submit" value="Submit" style="padding:15px; background:#3377ff;color:white;"> 
-<br><br>
-<br><br>
+while($row = mysqli_fetch_array($result))
+  {
+	   echo "<tr>";
+  echo  "<td>"?> <img src="<?php echo  $row["image"];?>"><?php echo "</td>";
+  echo "    ";
+  echo "<td>" . $row['id_number'] . "</td>";
+  echo "    ";
+  echo "<td>" . $row['username'] . "</td>";
+    echo "    ";
+	  echo "<td>" . $row['email'] . "</td>";
+    echo "    ";
+	  echo "</tr>";
+  echo "</br>";
 
-</form>
+  }
+echo "</table>";
 
+  echo "</br>";
+    echo "</br>";
+	?>
+	 
+</div>
 </section>
 
 <section class="footer">
@@ -157,6 +168,5 @@ Address:<br> <textarea name="address" rows="5" cols="40" style=" width:80%;"></t
 
 </body>
 </html>
-
 
 
