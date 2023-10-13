@@ -29,7 +29,6 @@ button {
   width: 100%;
   font-size: 20px;
 }
-
 button:hover {
   opacity: 0.8;
 }
